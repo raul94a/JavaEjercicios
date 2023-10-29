@@ -21,8 +21,8 @@ public class EcuacionSegundoGrado {
         // x = 0, ya que a*x^2 + b*x = 0 => x(a*x + b) = 0
 
         if (a == 0) {
-            //Ojo! Si la B vale 0, pero la C no es 0 el probelma NO TIENE SOLUCIÓN ya que tendríamos este caso:
-            // C = 0... y si C es distinto que 0 entonces, POR ejemplo, 4 = 0 lo que NO ES POSIBLE
+            //Ojo! Si la B vale 0, pero la C no tiene un valor de 0, el problema NO TIENE SOLUCIÓN, ya que tendríamos este caso:
+            // C = 0... y si C es distinto que 0 entonces, POR ejemplo, 4 = 0 esto no sería posible.
             if (b == 0) {
                 System.out.println("El problema no tiene solución");
             } else {
