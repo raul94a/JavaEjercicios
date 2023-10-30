@@ -5,8 +5,8 @@ import java.sql.SQLOutput;
 public class EcuacionSegundoGrado {
     public static void main(String[] args) {
         // A*x ^2 + B*x + C = 0
-        int a = 5;
-        int b = -1;
+        int a =0;
+        int b = 1;
         int c = 0;
 
         // Es posible que la ecuación de segundo grado sea de la siguiente forma
