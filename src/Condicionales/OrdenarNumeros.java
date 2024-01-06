@@ -19,14 +19,12 @@ public class OrdenarNumeros {
             if(c > b){
                 max = c;
             }
-
         }
         else  {
             if(c > a){
                 max = c;
             }
         }
-
 
         int min = a;
         if(b < a){
