@@ -7,7 +7,7 @@ public class PidemeQueYoTeDoy {
 
     public static void main(String[] args) {
         String cadena = "";
-        StringBuilder cadenaFinal = new StringBuilder();
+        String cadenaFinal = "";
         Scanner sc = new Scanner(System.in);
         do {
             System.out.print("Dime algo: ");
@@ -15,11 +15,10 @@ public class PidemeQueYoTeDoy {
             cadena = sc.nextLine();
             System.out.println();
             System.out.println(cadena);
-            cadenaFinal.append(cadena).append(" ");
+            cadenaFinal += cadena + " ";
         }while (!cadena.isEmpty());
-
-        System.out.println(cadenaFinal);
     }
+
 
 }
 
