@@ -1,0 +1,36 @@
+class BuscarPalabra {
+
+
+public static void main() {
+
+
+String cadena = "Esta cadena es una cadena";
+
+String cadenaBuscada = "cadena";
+
+int longitud = cadena.length;
+
+
+String cadenaComparadora = "";
+
+int contador = 0;
+
+for( int i = 0 ; i < longitud ; i++){
+
+  char char = cadena.charAt(i);
+  
+  cadenaComparada += char;
+
+  if(cadenaComparadora.equals(cadenaBuscada)){
+   contador++;
+
+}
+if(Character.isWhitespace(char)){
+  cadenaComparadora = "";
+}
+
+}
+
+}
+
+}
