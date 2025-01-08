@@ -1,5 +1,16 @@
 package threaded_java;
 
+/**
+ * THREAD STATES
+ *
+ * NEW
+ * RUNNABLE
+ * BLOCKED
+ * WAITING
+ * TIMED_WAITING
+ * TERMINATED
+ */
+
 public class ThreadStates {
     public static void main(String[] args) {
         var t1 = new Thread(new DemoBlockedRunnable());
