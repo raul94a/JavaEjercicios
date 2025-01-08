@@ -6,13 +6,15 @@ import java.util.concurrent.Semaphore;
 
 public class Hive {
     public static void main(String[] args) throws InterruptedException {
+        var start = System.currentTimeMillis();
         var queen = new QueenBee();
+
         List<Flower> flowers = new ArrayList<>();
-        for (var i = 0; i < 50000; i++) {
+        for (var i = 0; i < 3; i++) {
             flowers.add(new Flower(i));
         }
         List<WorkerBee> workerBees = new ArrayList<>();
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 2; i++) {
             workerBees.add(new WorkerBee(i, flowers,queen));
         }
         int total = 0;
@@ -20,7 +22,7 @@ public class Hive {
             total += f.nectarNr;
         }
         System.out.println("Sum of nectar is " + total);
-        Thread.sleep(2000);
+        Thread.sleep(1500);
 
         workerBees.forEach(WorkerBee::start);
 
@@ -38,7 +40,8 @@ public class Hive {
             total += f.nectarNr;
         }
         System.out.println("Remaining nectar is " + total);
-
+        var end = System.currentTimeMillis();
+        System.out.println((end - start) + " ms");
 
     }
 }
@@ -71,17 +74,18 @@ class WorkerBee extends Thread {
     public void recollect() {
         for (var f : flowers) {
             var permits = f.semaphore.availablePermits();
-            if (f.semaphore.availablePermits() == 0) {
+
+            if (permits == 0 || !f.hasNectar()) {
                 continue;
             }
-            while (f.hasNectar()) {
+            while (f.hasNectar() && f.semaphore.availablePermits() == 1 ) {
                 try {
-                    System.out.println("Bee " + id + " is now recollecting");
-                    recollectedNectar += f.getNectar();
+                    //System.out.println("Bee " + id + " is now recollecting");
+                    final int nectar = f.getNectar();
+                    recollectedNectar += nectar;
                     queen.store(recollectedNectar);
                     recollectedNectar = 0;
-                    System.out.println("Bee " + id + " is returning back to flowers in thread " + Thread.currentThread().getName());
-                //  Thread.sleep(500);
+             //       System.out.println("Bee " + id + " is returning back to flower " + f.id + " with " + nectar   + " nectar units in thread " + Thread.currentThread().getName());
                 } catch (Exception ignore) {
                 }
             }
@@ -90,7 +94,7 @@ class WorkerBee extends Thread {
 
     @Override
     public void run() {
-        System.out.println("Starting a new Thread for recollection " + Thread.currentThread().getName());
+        //System.out.println("Starting a new Thread for recollection " + Thread.currentThread().getName());
         recollect();
     }
 
@@ -109,13 +113,14 @@ class Flower {
 
     public int getNectar() {
         int nectarQty = 0;
+
+        if(nectarNr == 0 || semaphore.availablePermits() == 0) return nectarQty;
         try {
             semaphore.acquire();
-
-
-            System.out.println("Recollecting flower " + id + " with nectar qty: " + nectarNr);
+            //System.out.println("Recollecting flower " + id + " with nectar qty: " + nectarNr);
             nectarQty = Math.min(nectarNr, 3);
             nectarNr -= nectarQty;
+            Thread.sleep(15);
 
 
         } catch (Exception ignore) {
@@ -126,7 +131,7 @@ class Flower {
         return nectarQty;
     }
 
-    public boolean hasNectar() {
+    public synchronized boolean hasNectar() {
         return nectarNr > 0;
     }
 
