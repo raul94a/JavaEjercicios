@@ -2,9 +2,9 @@ package threaded_java;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Semaphore;
 
 public class Hive {
@@ -64,7 +64,7 @@ public class Hive {
 class QueenBee {
 
     int nectar = 0;
-    Map<Integer, Integer> beePerformanceMap = new HashMap<>();
+    Map<Integer, Integer> beePerformanceMap = new ConcurrentHashMap<>();
     public synchronized void store(int nectarQty, WorkerBee bee) {
         nectar += nectarQty;
         beePerformanceMap.merge(bee.id, nectarQty, Integer::sum);
