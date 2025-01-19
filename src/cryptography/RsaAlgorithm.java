@@ -67,7 +67,7 @@ public class RsaAlgorithm {
         }
     }
 
-    private static String byteToString(byte[] byteArray) {
+    static String byteToString(byte[] byteArray) {
         StringBuilder recoveredString = new StringBuilder();
         for (byte byteVal : byteArray) {
             recoveredString.append(byteVal);
