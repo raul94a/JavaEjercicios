@@ -5,6 +5,10 @@ This repository is divided in several package, each one trying to demonstrate in
 ## cryptography
 * [CaesarCipher](src/cryptography/CaesarCipher.java). Classic Caesar Ciphering.
 * [SecureRandomGeneratorExample](src/cryptography/SecureRandomGeneratorExample.java). Secure Random Example.
+* [AES Algorithm](src/cryptography/AesAlgorithm.java) AES Algorithm.
+* [RSA Algorithm](src/cryptography/RsaAlgorithm.java) RSA Algorithm.
+* [ElGamal Algorithm](src/cryptography/ElGamalAlgorithm.java) ElGamal Algorithm.
+
 
 ## threaded_java
 
