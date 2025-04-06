@@ -41,7 +41,7 @@ public class AesExercise {
 
     /**
      * @param hexKey is supposed to be a key in Hex format
-     *
+     * @param mode bear two possible values: AES/CBC/PKCS5Padding or AES/CTR/NoPadding
      * */
     private static void decryptWithAes(String ciphertext, String hexKey, String mode) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         HexFormat hf = HexFormat.of();
