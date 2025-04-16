@@ -7,6 +7,10 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.HexFormat;
 
+/**
+ * Textbook RSA: ¡Don't use in production!
+ *
+ */
 public class RsaAlgorithm {
 
     private BigInteger prime_p, prime_q, val_n, phi_n, val_e, val_d;
